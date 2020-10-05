@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1601928644 source:d:\documentos\universidad\2020-2\modelos y simulacion\c\punto1.2\main.c
+	<stdio.h>
+	<stdlib.h>
+	"simlib.h"
+	<stdio.h>
+	<stdlib.h>
+	"simlib.h"
+
+1601925775 d:\documentos\universidad\2020-2\modelos y simulacion\c\punto1.2\simlib.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	"simlibdefs.h"
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	"simlibdefs.h"
+
+1601933302 d:\documentos\universidad\2020-2\modelos y simulacion\c\punto1.2\simlibdefs.h
+
+1601933302 source:d:\documentos\universidad\2020-2\modelos y simulacion\c\punto1.2\simlib.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	"simlibdefs.h"
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	"simlibdefs.h"
+
+1601925718 ependency file v1.0
+
