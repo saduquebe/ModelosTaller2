@@ -39,7 +39,7 @@ void init_model();
 void arrivoAeropuerto();
 void arrivoHotel1();
 void arrivoHotel2();
-void inicio_simulacion();//Salida inicial del bus 1 del aeropuerto
+void inicio_simulacion();//Salida inicial del bus 1 del aeropuerto eventos 4 y 5
 void salida_bus_aeropuerto(int bus);//Salida de los buses desde el aeropuerto para el segundo trayecto
                                     //Programa eventos 6 y 8
 void salidaHotel1Bus(int bus);//Paradas de los buses en el hotel 1. Programa eventos 7 y 9
@@ -54,26 +54,31 @@ int main()
     leer_parametros();
     init_simlib();
     init_model();
-    timing();
     while(recorrido<numero_recorridos_totales){
+        timing();
         switch(next_event_type){
             case EVENT_ARRIVO_AEROPUERTO:
                arrivoAeropuerto();
             break;
 
             case EVENT_ARRIVO_HOTEL_1:
+                arrivoHotel1();
             break;
 
             case EVENT_ARRIVO_HOTEL_2:
+                arrivoHotel2();
             break;
 
             case EVENT_SALIDA_BUS_1_AEROPUERTO:
+                salida_bus_aeropuerto(BUS1);
             break;
 
             case EVENT_SALIDA_BUS_2_AEROPUERTO:
+                salida_bus_aeropuerto(BUS2);
             break;
 
             case EVENT_PARADA_BUS1_HOTEL1:
+                salidaHotel1Bus(BUS1);
             break;
 
             case EVENT_PARADA_BUS1_HOTEL2:
@@ -81,6 +86,7 @@ int main()
             break;
 
             case EVENT_PARADA_BUS2_HOTEL1:
+                salidaHotel1Bus(BUS2);
             break;
 
             case EVENT_PARADA_BUS2_HOTEL2:
@@ -88,23 +94,44 @@ int main()
             break;
 
             case EVENT_PARADA_BUS1_AEROPUERTO:
+                parada_bus_aeropuerto(BUS1);
             break;
 
             case EVENT_PARADA_BUS2_AEROPUERTO:
+                parada_bus_aeropuerto(BUS2);
             break;
         }
     }
 }
 
-void salida_bus_aeropuerto(int bus){
+void parada_bus_aeropuerto(int bus){
     if(bus==BUS1){
-
+        total_pasajeros_trasnportados+=contbus1;
+        contbus1=0;
+        while(list_size[QUEUE_AEROPUERTO]>0){
+            list_remove(FIRST,QUEUE_AEROPUERTO);
+            contbus1++;
+        }
+        if(contbus1>maximo_sillas_bus) maximo_sillas_bus=contbus1;
+        event_schedule(sim_time+getPromedioTrayecto(),EVENT_PARADA_BUS1_HOTEL1);
     }else if(bus==BUS2){
-
+        total_pasajeros_trasnportados+=contbus2;
+        contbus2=0;
+        while(list_size[QUEUE_AEROPUERTO]>0){
+            list_remove(FIRST,QUEUE_AEROPUERTO);
+            contbus2++;
+        }
+        if(contbus2>maximo_sillas_bus) maximo_sillas_bus=contbus2;
+        event_schedule(sim_time+getPromedioTrayecto(),EVENT_PARADA_BUS2_HOTEL1);
+        recorrido++;
     }else{
         exit(1);
     }
 }
+
+
+ void salidaHotel1Bus(int bus){
+ }
 
 void salidaHotel2Bus(int bus){
     if(bus==BUS1){
@@ -113,7 +140,7 @@ void salidaHotel2Bus(int bus){
         }else{
             contbus1-=(contbus1+1)/2;
         }
-        event_schedule(getPromedioTrayecto(),EVENT_PARADA_BUS1_AEROPUERTO);
+        event_schedule(sim_time+getPromedioTrayecto(),EVENT_PARADA_BUS1_AEROPUERTO);
         while(list_size[QUEUE_HOTEL2]>0){
             contbus1++;
             list_remove(FIRST,QUEUE_HOTEL2);
@@ -126,7 +153,7 @@ void salidaHotel2Bus(int bus){
         }else{
             contbus2-=(contbus2+1)/2;
         }
-        event_schedule(getPromedioTrayecto(),EVENT_PARADA_BUS2_AEROPUERTO);
+        event_schedule(sim_time+getPromedioTrayecto(),EVENT_PARADA_BUS2_AEROPUERTO);
         while(list_size[QUEUE_HOTEL2]>0){
             contbus2++;
             list_remove(FIRST,QUEUE_HOTEL2);
@@ -138,7 +165,16 @@ void salidaHotel2Bus(int bus){
     }
 }
 
+void salida_bus_aeropuerto(int bus){
+}
+
+
+
+
+
+
 void init_model(){
+    recorrido=0;
     total_pasajeros_trasnportados=0;
     maximo_sillas_bus=-1;
     contbus1=0;
@@ -147,9 +183,6 @@ void init_model(){
 
 float getPromedioTrayecto(){
     return uniform(promedio_trayecto,2,STREAM_TRAYECTO);
-}
-
-void arrivoAeropuerto(){
 }
 
 void leer_parametros(){
@@ -165,4 +198,18 @@ void leer_parametros(){
     fprintf(outfile, "Promedio arrivo al aeropuerto: %f\n", promedio_arrivo_aeropuerto);
     fprintf(outfile, "Promedio arrivo al hotel: %f\n", promedio_arrivo_hotel);
     fprintf(outfile, "Recorridos a simular: %d\n", numero_recorridos_totales);
+}
+
+
+
+//Arrivos de personas
+void arrivoHotel1(){
+}
+
+void arrivoHotel2(){
+
+}
+
+
+void arrivoAeropuerto(){
 }
