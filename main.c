@@ -21,7 +21,8 @@
 #define BUS2 5
 
 float promedio_trayecto, promedio_arrivo_aeropuerto, promedio_arrivo_hotel;
-int numero_recorridos_totales, recorrido, maximo_sillas_bus,sillas_ocupadas_bus1, sillas_ocupadas_bus2;
+int numero_recorridos_totales, recorrido, maximo_sillas_bus,sillas_ocupadas_bus1, sillas_ocupadas_bus2,
+    contbus1, contbus2;
 
 //Contadores-acumuladores
 
@@ -77,9 +78,17 @@ int main()
     }
 }
 
+void salidaHotel2Bus(int bus){
+
+}
+
 void init_model(){
     maximo_sillas_bus=-1;
+    contbus1=0;
+    contbus2=0;
 }
+
+void salidaHotel2Bus(int bus)
 
 void arrivoAeropuerto(){
 }
