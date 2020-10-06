@@ -29,7 +29,6 @@ FILE *infile, *outfile;
 
 void leer_parametros();
 void init_model();
-
 void arrivoAeropuerto();
 void arrivoHotel1();
 void arrivoHotel2();
@@ -52,7 +51,7 @@ int main()
     while(recorrido<numero_recorridos_totales){
         switch(next_event_type){
             case EVENT_ARRIVO_AEROPUERTO:
-                arrivoAeropuerto();
+               arrivoAeropuerto();
             break;
             case EVENT_ARRIVO_HOTEL_1:
             break;
@@ -74,7 +73,7 @@ int main()
             break;
             case EVENT_PARADA_BUS2_AEROPUERTO:
             break;
-    }
+        }
     }
 }
 
@@ -82,6 +81,8 @@ void init_model(){
     maximo_sillas_bus=-1;
 }
 
+void arrivoAeropuerto(){
+}
 
 void leer_parametros(){
     //Lee parametros de entrada

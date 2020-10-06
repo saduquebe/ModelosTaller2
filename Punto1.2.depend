@@ -31,16 +31,12 @@
 
 1601925718 ependency file v1.0
 
-1601945437 source:c:\users\david\onedrive\documentos\github\modelostaller2\main.c
+1601946028 source:c:\users\david\onedrive\documentos\github\modelostaller2\main.c
 	<stdio.h>
 	<stdlib.h>
 	"simlib.h"
 
-1601933302 c:\users\david\onedrive\documentos\github\modelostaller2\simlib.h
-	<stdio.h>
-	<stdlib.h>
-	<math.h>
-	"simlibdefs.h"
+1601946040 c:\users\david\onedrive\documentos\github\modelostaller2\simlib.h
 	<stdio.h>
 	<stdlib.h>
 	<math.h>
@@ -48,11 +44,7 @@
 
 1601933302 c:\users\david\onedrive\documentos\github\modelostaller2\simlibdefs.h
 
-1601933302 source:c:\users\david\onedrive\documentos\github\modelostaller2\simlib.c
-	<stdio.h>
-	<stdlib.h>
-	<math.h>
-	"simlibdefs.h"
+1601946059 source:c:\users\david\onedrive\documentos\github\modelostaller2\simlib.c
 	<stdio.h>
 	<stdlib.h>
 	<math.h>
