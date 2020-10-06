@@ -5,8 +5,8 @@
 #define EVENT_ARRIVO_AEROPUERTO 1
 #define EVENT_ARRIVO_HOTEL_1 2
 #define EVENT_ARRIVO_HOTEL_2 3
-#define EVENT_SALIDA_BUS_1_AEROPUERTO 4
-#define EVENT_SALIDA_BUS_2_AEROPUERTO 5
+#define EVENT_SALIDA_BUS_1_AEROPUERTO 4  //evento primera salida del aeropierto bus 1
+#define EVENT_SALIDA_BUS_2_AEROPUERTO 5  //evento primera salida del aeropierto bus 2
 #define EVENT_PARADA_BUS1_HOTEL1 6
 #define EVENT_PARADA_BUS1_HOTEL2 7
 #define EVENT_PARADA_BUS2_HOTEL1 8
@@ -28,7 +28,7 @@
 
 float promedio_trayecto, promedio_arrivo_aeropuerto, promedio_arrivo_hotel;
 int numero_recorridos_totales, recorrido, maximo_sillas_bus,sillas_ocupadas_bus1, sillas_ocupadas_bus2,
-    contbus1, contbus2;
+    contbus1, contbus2, total_pasajeros_trasnportados;
 
 //Contadores-acumuladores
 
@@ -60,27 +60,49 @@ int main()
             case EVENT_ARRIVO_AEROPUERTO:
                arrivoAeropuerto();
             break;
+
             case EVENT_ARRIVO_HOTEL_1:
             break;
+
             case EVENT_ARRIVO_HOTEL_2:
             break;
+
             case EVENT_SALIDA_BUS_1_AEROPUERTO:
             break;
+
             case EVENT_SALIDA_BUS_2_AEROPUERTO:
             break;
+
             case EVENT_PARADA_BUS1_HOTEL1:
             break;
+
             case EVENT_PARADA_BUS1_HOTEL2:
+                salidaHotel2Bus(BUS1);
             break;
+
             case EVENT_PARADA_BUS2_HOTEL1:
             break;
+
             case EVENT_PARADA_BUS2_HOTEL2:
+                salidaHotel2Bus(BUS2);
             break;
+
             case EVENT_PARADA_BUS1_AEROPUERTO:
             break;
+
             case EVENT_PARADA_BUS2_AEROPUERTO:
             break;
         }
+    }
+}
+
+void salida_bus_aeropuerto(int bus){
+    if(bus==BUS1){
+
+    }else if(bus==BUS2){
+
+    }else{
+        exit(1);
     }
 }
 
@@ -93,9 +115,11 @@ void salidaHotel2Bus(int bus){
         }
         event_schedule(getPromedioTrayecto(),EVENT_PARADA_BUS1_AEROPUERTO);
         while(list_size[QUEUE_HOTEL2]>0){
+            contbus1++;
             list_remove(FIRST,QUEUE_HOTEL2);
             sampst(sim_time-transfer[1],SAMPST_DEMORAS_HOTEL2);
         }
+        if(contbus1>maximo_sillas_bus) maximo_sillas_bus=contbus1;
     }else if(BUS2){
         if(contbus2%2==0){
             contbus2-=contbus2/2;
@@ -104,15 +128,18 @@ void salidaHotel2Bus(int bus){
         }
         event_schedule(getPromedioTrayecto(),EVENT_PARADA_BUS2_AEROPUERTO);
         while(list_size[QUEUE_HOTEL2]>0){
+            contbus2++;
             list_remove(FIRST,QUEUE_HOTEL2);
             sampst(sim_time-transfer[1],SAMPST_DEMORAS_HOTEL2);
         }
+        if(contbus2>maximo_sillas_bus) maximo_sillas_bus=contbus2;
     }else{
         exit(1);
     }
 }
 
 void init_model(){
+    total_pasajeros_trasnportados=0;
     maximo_sillas_bus=-1;
     contbus1=0;
     contbus2=0;
