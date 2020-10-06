@@ -20,6 +20,12 @@
 #define BUS1 4
 #define BUS2 5
 
+
+#define SAMPST_DEMORAS_HOTEL2 1
+
+
+#define STREAM_TRAYECTO 1
+
 float promedio_trayecto, promedio_arrivo_aeropuerto, promedio_arrivo_hotel;
 int numero_recorridos_totales, recorrido, maximo_sillas_bus,sillas_ocupadas_bus1, sillas_ocupadas_bus2,
     contbus1, contbus2;
@@ -40,7 +46,7 @@ void salidaHotel1Bus(int bus);//Paradas de los buses en el hotel 1. Programa eve
 void salidaHotel2Bus(int bus);//Paradas de los buses en el hotel 2: Programa eventos 10 y 11
 void informe(void);
 
-
+float getPromedioTrayecto();
 
 
 int main()
@@ -79,7 +85,31 @@ int main()
 }
 
 void salidaHotel2Bus(int bus){
-
+    if(bus==BUS1){
+        if(contbus1%2==0){
+            contbus1-=contbus1/2;
+        }else{
+            contbus1-=(contbus1+1)/2;
+        }
+        event_schedule(getPromedioTrayecto(),EVENT_PARADA_BUS1_AEROPUERTO);
+        while(list_size[QUEUE_HOTEL2]>0){
+            list_remove(FIRST,QUEUE_HOTEL2);
+            sampst(sim_time-transfer[1],SAMPST_DEMORAS_HOTEL2);
+        }
+    }else if(BUS2){
+        if(contbus2%2==0){
+            contbus2-=contbus2/2;
+        }else{
+            contbus2-=(contbus2+1)/2;
+        }
+        event_schedule(getPromedioTrayecto(),EVENT_PARADA_BUS2_AEROPUERTO);
+        while(list_size[QUEUE_HOTEL2]>0){
+            list_remove(FIRST,QUEUE_HOTEL2);
+            sampst(sim_time-transfer[1],SAMPST_DEMORAS_HOTEL2);
+        }
+    }else{
+        exit(1);
+    }
 }
 
 void init_model(){
@@ -88,7 +118,9 @@ void init_model(){
     contbus2=0;
 }
 
-void salidaHotel2Bus(int bus)
+float getPromedioTrayecto(){
+    return uniform(promedio_trayecto,2,STREAM_TRAYECTO);
+}
 
 void arrivoAeropuerto(){
 }
