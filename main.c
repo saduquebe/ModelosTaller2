@@ -24,11 +24,12 @@ float promedio_trayecto, promedio_arrivo_aeropuerto, promedio_arrivo_hotel;
 int numero_recorridos_totales, recorrido, maximo_sillas_bus,sillas_ocupadas_bus1, sillas_ocupadas_bus2;
 
 //Contadores-acumuladores
-int
+
 FILE *infile, *outfile;
 
 void leer_parametros();
 void init_model();
+
 void arrivoAeropuerto();
 void arrivoHotel1();
 void arrivoHotel2();
@@ -49,7 +50,7 @@ int main()
     init_model();
     timing();
     while(recorrido<numero_recorridos_totales){
-        switch(next_event_type):
+        switch(next_event_type){
             case EVENT_ARRIVO_AEROPUERTO:
                 arrivoAeropuerto();
             break;
@@ -57,9 +58,9 @@ int main()
             break;
             case EVENT_ARRIVO_HOTEL_2:
             break;
-            case EVENT_SALIDA_BUS_1:
+            case EVENT_SALIDA_BUS_1_AEROPUERTO:
             break;
-            case EVENT_SALIDA_BUS_2:
+            case EVENT_SALIDA_BUS_2_AEROPUERTO:
             break;
             case EVENT_PARADA_BUS1_HOTEL1:
             break;
@@ -73,6 +74,7 @@ int main()
             break;
             case EVENT_PARADA_BUS2_AEROPUERTO:
             break;
+    }
     }
 }
 
