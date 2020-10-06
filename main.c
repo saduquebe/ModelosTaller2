@@ -40,8 +40,8 @@ void arrivoAeropuerto();
 void arrivoHotel1();
 void arrivoHotel2();
 void inicio_simulacion();//Salida inicial del bus 1 del aeropuerto eventos 4 y 5
-void salida_bus_aeropuerto(int bus);//Salida de los buses desde el aeropuerto para el segundo trayecto
-                                    //Programa eventos 6 y 8
+void salida_bus_aeropuerto(int bus);//Las primera vez que sale cada bus del aeropuerto(No descarga gente)
+void parada_bus_aeropuerto(int bus);//Salida de los buses desde el aeropuerto para el segundo trayecto Programa eventos 6 y 8
 void salidaHotel1Bus(int bus);//Paradas de los buses en el hotel 1. Programa eventos 7 y 9
 void salidaHotel2Bus(int bus);//Paradas de los buses en el hotel 2: Programa eventos 10 y 11
 void informe(void);
