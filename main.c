@@ -46,7 +46,6 @@ void init_model();
 void arrivoAeropuerto();
 void arrivoHotel1();
 void arrivoHotel2();
-void inicio_simulacion();//Salida inicial del bus 1 del aeropuerto eventos 4 y 5
 void salida_bus_aeropuerto(int bus);//Las primera vez que sale cada bus del aeropuerto(No descarga gente)
 void parada_bus_aeropuerto(int bus);//Salida de los buses desde el aeropuerto para el segundo trayecto Programa eventos 6 y 8
 void salidaHotel1Bus(int bus);//Paradas de los buses en el hotel 1. Programa eventos 7 y 9
@@ -248,8 +247,11 @@ void report(void) /* Report generator function. */
 /* Get and write out estimates of desired measures of performance. */
 fprintf(outfile,"\nTiempo total de simulación: %f horas\n",sim_time/60.0);
 fprintf(outfile,"Número de sillas necesarias: %d\n", maximo_sillas_bus);
+fprintf(outfile,"\nEstadística espera en cola Hotel 1\n");
 out_sampst(outfile, SAMPST_DEMORAS_HOTEL1,SAMPST_DEMORAS_HOTEL1);
+fprintf(outfile,"\nEstadística espera en cola Hotel 2\n");
 out_sampst(outfile, SAMPST_DEMORAS_HOTEL2,SAMPST_DEMORAS_HOTEL2);
+fprintf(outfile,"\nEstadística espera en cola Aeropuerto 1\n");
 out_sampst(outfile, SAMPST_DEMORAS_AEROPUERTO,SAMPST_DEMORAS_AEROPUERTO);
 /*
 fprintf(outfile, "\nQueue length (1) and server utilization (2):\n");
@@ -265,7 +267,7 @@ void init_model(){
     contbus2=0;
     pasajeros_aeropuerto_B1=0;
     pasajeros_aeropuerto_B2=0;
-
+    transfer[1]=0;
     event_schedule(expon(promedio_arrivo_hotel,STREAM_HOTEL1),EVENT_ARRIVO_HOTEL_1);
     event_schedule(expon(promedio_arrivo_hotel,STREAM_HOTEL2),EVENT_ARRIVO_HOTEL_2);
     event_schedule(expon(promedio_arrivo_aeropuerto,STREAM_AEROPUERTO),EVENT_ARRIVO_AEROPUERTO);
