@@ -1,4 +1,37 @@
 Promedio trayecto: 20.000000
 Promedio arrivo al aeropuerto: 2.500000
 Promedio arrivo al hotel: 5.000000
-Recorridos a simular: 1020
+Recorridos a simular: 10
+
+Tiempo total de simulación: 5.957482 horas
+Número de sillas necesarias: 26
+
+ sampst                         Number
+variable                          of
+ number       Average           values          Maximum          Minimum
+________________________________________________________________________
+
+    1         12.1363          82.0000          38.1542        0.0271912 
+________________________________________________________________________
+
+
+
+ sampst                         Number
+variable                          of
+ number       Average           values          Maximum          Minimum
+________________________________________________________________________
+
+    2         12.4934          81.0000          28.4842         0.224396 
+________________________________________________________________________
+
+
+
+ sampst                         Number
+variable                          of
+ number       Average           values          Maximum          Minimum
+________________________________________________________________________
+
+    3         12.1994          133.000          36.5863         0.255741 
+________________________________________________________________________
+
+
