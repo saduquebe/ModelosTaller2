@@ -6,6 +6,8 @@ Recorridos a simular: 10
 Tiempo total de simulación: 5.957482 horas
 Número de sillas necesarias: 26
 
+Estadística espera en cola Hotel 1
+
  sampst                         Number
 variable                          of
  number       Average           values          Maximum          Minimum
@@ -16,6 +18,8 @@ ________________________________________________________________________
 
 
 
+Estadística espera en cola Hotel 2
+
  sampst                         Number
 variable                          of
  number       Average           values          Maximum          Minimum
@@ -25,6 +29,8 @@ ________________________________________________________________________
 ________________________________________________________________________
 
 
+
+Estadística espera en cola Aeropuerto 1
 
  sampst                         Number
 variable                          of
